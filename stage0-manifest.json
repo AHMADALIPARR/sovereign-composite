@@ -1,0 +1,174 @@
+{
+  "stage": "0 (ground truth) + 1 (widget map)",
+  "project": "Sovereign Composite Model (working title; owner's name to coin)",
+  "sealed_at": "2026-11-05T19:04:00-08:00",
+  "tool": {
+    "parser": "sovereign-gemini-gguf @ 6389643",
+    "inference": "llama.cpp llama-cli (Oct 22 build)"
+  },
+  "artifacts": [
+    {
+      "file": "models/snapkitty-merged.Q4_K_M.gguf",
+      "sha256": "4d959da2985affc363c02784307ac135a69e77768d8d5475c6f15bb99560c59f",
+      "bytes": 2705853856,
+      "source": "HF Snapkitty/snapkitty-merged",
+      "license": "NVIDIA Community Model License",
+      "steering": "NVIDIA instruct tuning, partly overwritten by owner's merge/fine-tune",
+      "parser_verdict": {
+        "architecture": "nemotron",
+        "tensors": 324,
+        "total_parameters": 4190509056,
+        "validate": "SUCCESS zero-sorry valid"
+      }
+    },
+    {
+      "file": "models/gemma-2-2b-it.Q4_K_M.gguf",
+      "sha256": "e0aee85060f168f0f2d8473d7ea41ce2f3230c1bc1374847505ea599288a7787",
+      "bytes": 1708582752,
+      "source": "HF bartowski/gemma-2-2b-it-GGUF (ungated mirror; ggml-org original is license-gated)",
+      "license": "Gemma Terms of Use",
+      "steering": "Google instruction tuning (RLHF) intact",
+      "parser_verdict": {
+        "architecture": "gemma2",
+        "tensors": 288,
+        "total_parameters": 2614341888,
+        "blocks": 26,
+        "hidden": 2304,
+        "heads": "8Q/4KV",
+        "validate": "SUCCESS zero-sorry valid"
+      }
+    }
+  ],
+  "documents": {
+    "sovereign-composite/gemma-inventory.json": "41bdf27e8b378e1319f7ecc62c39db1a7d4fc6e3153c278291bb99d0839f799c",
+    "sovereign-composite/merged-inventory.json": "a46d915be2952e2ab19b2e5ff13ed582b3d1c0d05a8925a3d8382975a0ef350d",
+    "sovereign-composite/gemma-graph.txt": "aebce39477218f6532a601de9d66d84fe3b56e7162983760aa1eb9edbb8b6e22",
+    "sovereign-composite/stage1-widget-map.md": "5dd2f23dc96409ad377cb0669c19be207a7400a511b2a0430edf7d861a3d96a3",
+    "sovereign-composite/multimodal-ingestion-spec.md": "2062de1e2d796b5e7150093d0bc63aab971cbb2828e746ada988f1e2957d2dee",
+    "your_files/sovereign-composite-blueprint.md": "14a8b12a6dbbd1b1874c49d25a436e8526ad497e56a01b056b6a64a8aef00a94"
+  },
+  "pending_at_seal": [
+    "MiMo-4B weights (bbqbaddie, storage)",
+    "Jetson stages (SSH authorization outstanding)"
+  ],
+  "chain_head_sha256_of_concatenated_file_hashes": "621f27fa8c288060e4b1ceb23cf9528d248a2ddf85e577a4bd5d7e1251d75bf1",
+  "inference_verification": {
+    "model": "gemma-2-2b-it.Q4_K_M.gguf",
+    "runner": "llama.cpp llama-cli b1-e197cef, CPU, 4 threads",
+    "prompt": "The capital of France is",
+    "temperature": 0,
+    "generated": "The capital of France is **Paris**. \ud83c\uddeb\ud83c\uddf7",
+    "prompt_speed_tps": 16.1,
+    "generation_speed_tps": 6.5,
+    "transcript": "sovereign-composite/gemma-inference.txt (stdout) + gemma-inference.log",
+    "note": "llama-cli entered its REPL after generation; the 230s timeout reaped the idle REPL (exit 124). Generation itself completed and is quoted verbatim above."
+  },
+  "context_hypervisor": {
+    "implementation": "context-hypervisor/chv.c (C11, no dependencies)",
+    "chv_c_sha256": "9a6d3328968b4be8f476ef05c00de0f91006254e770868b83f414c99a35ba49f",
+    "sha256_selftest": "PASS (FIPS vectors: empty, abc, 56-byte)",
+    "scenario_A_1000_frames": {
+      "Nv_total": 256000,
+      "visual_budget": 7836,
+      "stride": 34,
+      "slabs_admitted": 30,
+      "Nv": 7680,
+      "S": 7780,
+      "attention_cost_bound": 60528400,
+      "trace_head": "7cc363f405b6efcfc5d7649171b1781a6d9e552390cecbc39cf9a02d54cb27fe",
+      "trace_file": "sovereign-composite/trace-a.log"
+    },
+    "scenario_B_photo": {
+      "slabs_admitted": 1,
+      "Nv": 256,
+      "S": 296,
+      "trace_file": "sovereign-composite/trace-b.log"
+    },
+    "scenario_C_width_2305": "REFUSED TOPOLOGY_VIOLATION (exit 3); no trace written; no tensor loaded",
+    "determinism": "scenario A rerun produced a byte-identical trace chain"
+  },
+  "stage2_rung1": {
+    "script": "sovereign-composite/stage2_rung1.py",
+    "script_sha256": "be5feac352ff5b2f9ea451562661d90652f03febf1b89952e876ce4f3c738176",
+    "results": "sovereign-composite/stage2-rung1-results.json",
+    "results_sha256": "09ffab719e7ba518917a9634512907ad0dbe4eeb553d3b4540d8fa2373de5b5f",
+    "shapes": {
+      "hidden": 2304,
+      "ffn": 9216,
+      "experts": 2,
+      "note": "2 experts on this VM (RAM); accounting formula is general in N"
+    },
+    "gates": {
+      "G1_identity_pinned": "PASS max|delta| = 0.0 (bit-exact)",
+      "G2_identity_routed": "PASS max|delta| = 0.0 (routing-invariant at init)",
+      "G3_router_determinism": "PASS exact (QRA argmax, no softmax)",
+      "G4_accounting": "PASS (63,700,992 + 2,304) x 26 == parser MLP total 1,656,285,696"
+    },
+    "active_params_per_token": 63700992,
+    "moe_block_params_x2": 127401984,
+    "open": "real GGUF weight transplant needs a Q4_K dequantizer (rung 2); fine-train delta on a corpus is the following step"
+  },
+  "stage3_local_rung": {
+    "teacher": "TimesFM-3.0 (google/timesfm-3.0-pytorch) via owner's timesfm3 Evaluator",
+    "teacher_checkpoint_sha256": "a7592b0a8432baee54483254e5647856911ce69e09d09a9bb65904b2d98f17da",
+    "harness": "sovereign-composite/stage3_distill.py",
+    "harness_sha256": "d2f4c503ccdda3cb380f1ae4ba38a64a5a31ae867044f712b134a92439113971",
+    "frozen_series_sha256": "b7151be60bd244bfa9e4a93f4ede4dc98ca2c9f31ef9e8dbdc511a67057a34d2",
+    "slice": {
+      "context": 256,
+      "horizon": 32,
+      "teach_train_series": 64,
+      "eval_series": 32
+    },
+    "student_params": 334752,
+    "teacher_truth_MAE": 6.419675350189209,
+    "student_truth_MAE": 6.810696601867676,
+    "student_teacher_MAE": 0.8043428063392639,
+    "ratio": 1.060909817140043,
+    "bound": "student_truth_MAE <= 1.25 * teacher_truth_MAE",
+    "verdict": "PASS",
+    "teacher_outputs": "sovereign-composite/teacher_outputs.npz",
+    "teacher_outputs_sha256": "9112be470589e57ce9f4f75936d05a2ecedb99c7d18bac4f00a1f3b243b0243f",
+    "results_file": "sovereign-composite/stage3-results.json",
+    "big_machine_runbook": "sovereign-composite/stage3-big-machine-runbook.md"
+  },
+  "stage4_demo": {
+    "server": "sovereign-composite/stage4/serve.py",
+    "server_sha256": "41c5413626ce845f55a8074c840d41922c3a56278729c51a2fd3e34e65182868",
+    "policy": "sovereign-composite/stage4/policy.json",
+    "policy_sha256": "1e291ee5a7bae635d6abc29483849a78cefe7650c3985fe068cd39dc1544c59e",
+    "gates": [
+      "P1 provenance (model SHA re-verified at startup: MATCH)",
+      "P2 capability (policy model + caps)",
+      "P3 context hypervisor admission (chv)",
+      "P4 output bounds + hash",
+      "P5 WORM seal (genesis = Stage 0 chain head)"
+    ],
+    "demo_outcomes": [
+      {
+        "seq": 1,
+        "type": "REFUSED",
+        "at": "P2",
+        "reason": "model 'gpt-impostor-9000' not in policy"
+      },
+      {
+        "seq": 2,
+        "type": "REFUSED",
+        "at": "P2",
+        "reason": "max_tokens 100000 exceeds cap 128"
+      },
+      {
+        "seq": 3,
+        "type": "SERVED",
+        "prompt": "The capital of France is",
+        "completion": "The capital of France is **Paris**. \ud83c\uddeb\ud83c\uddf7",
+        "output_sha256": "fe9567f0e6aeca45b1f0a92fadec0b4361eb622e9795b9689360e9b8ffa121ba",
+        "hypervisor_trace_head": "fb233bc48660ec9b12c6994734b362733acab7d2726ab5728b39413261e2a926"
+      }
+    ],
+    "serving_log": "sovereign-composite/stage4/serving-log.jsonl",
+    "serving_log_sha256": "6266481711abfb2bb093b07909485c43d88e9c8efdbddbd0a8bd11f38d66ad51",
+    "chain_verification": "INDEPENDENTLY RECOMPUTED: all hashes + links valid; head baf10b3413afda2ba3eec4770d6c75329425912108f2fadf9b9b6c397dc6060c",
+    "demo_limits": "model loaded per request; chars/4 token estimator; cross-encoder semantic judging and mimo_core.wasm portal deployment remain Stage 4-full items (portal fix needs a push: owner go-ahead + token)"
+  }
+}

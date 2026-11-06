@@ -1,0 +1,5 @@
+e75fcbe50e2f156514ea71617f16de2f0c35b5d180b1466336c25c7ea22f3a10  POLICY model_sha=e0aee85060f168f0f2d8473d7ea41ce2f3230c1bc1374847505ea599288a7787 d_model=2304 ctx=8192 L=40 reserve=256 seed=1234 temp=0
+3474e791ebf0f47d95d3020a041e73108861ebfea2586013475e8e234f254d66  TOPOLOGY proj_width=2304 ADMITTED (== d_model)
+44816714db85885c9b35f0753bf25a856d010e73eca8ade4a6d0dc31be4e4c7e  BUDGET Nv_total=256 budget=7896 stride=1 admitted_slabs=1 Nv=256 S=296 cost_bound=87616
+3e46791c56280e21470272d8f2441f7f66c794c0b6ea4b40bc396c25a333b906  ADMIT slab=0 frames=[0..0] tokens=256
+506a6363bc75031e6f6755e90c324eabde273aa33ae17f5be2260c960e42f842  SEAL admitted=1 of 1 slabs; S=296; head follows in manifest

@@ -1,0 +1,13 @@
+{
+  "student_params": 334752,
+  "teacher_train_series": 64,
+  "eval_series": 32,
+  "context": 256,
+  "horizon": 32,
+  "teacher_truth_MAE": 6.419675350189209,
+  "student_truth_MAE": 6.810696601867676,
+  "student_teacher_MAE": 0.8043428063392639,
+  "bound": "student_truth_MAE <= 1.25 * teacher_truth_MAE",
+  "ratio": 1.060909817140043,
+  "PASS": true
+}

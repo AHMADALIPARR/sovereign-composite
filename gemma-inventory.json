@@ -1,0 +1,19 @@
+{
+  "magic": "GGUF",
+  "version": 3,
+  "file_size_bytes": 1708582752,
+  "tensor_count": 288,
+  "metadata_kv_count": 39,
+  "alignment": 32,
+  "architecture": "gemma2",
+  "parameters": {
+    "embedding": 589824000,
+    "attention": 368110080,
+    "mlp": 1656285696,
+    "normalization": 122112,
+    "output": 0,
+    "auxiliary": 0,
+    "total_parameters": 2614341888,
+    "total_parameters_billions": 2.614
+  }
+}

@@ -1,0 +1,4 @@
+9e78c671b697c100a925e5d4a679abc1ae9bf6688449dfa5fca64a46ad057b41  POLICY model_sha=e0aee85060f168f0f2d8473d7ea41ce2f3230c1bc1374847505ea599288a7787 d_model=2304 ctx=8192 L=6 reserve=256 seed=1234 temp=0
+e8d0246259129614dbe91408edba2253ed0daabfa4f31dbdee37a6d66c1d7bc9  TOPOLOGY proj_width=2304 ADMITTED (== d_model)
+d6824f082134605571958b0677186b3d45089d698b634642204645236c71ba62  BUDGET Nv_total=0 budget=7930 stride=1 admitted_slabs=0 Nv=0 S=6 cost_bound=36
+fb233bc48660ec9b12c6994734b362733acab7d2726ab5728b39413261e2a926  SEAL admitted=0 of 0 slabs; S=6; head follows in manifest

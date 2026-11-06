@@ -1,0 +1,18 @@
+{
+  "context": 512,
+  "horizon": 128,
+  "n_train": 256,
+  "n_eval": 32,
+  "base_seed": 20261105,
+  "families": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+  ],
+  "local_slice": {
+    "context": 256,
+    "horizon": 32
+  }
+}

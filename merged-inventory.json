@@ -1,0 +1,19 @@
+{
+  "magic": "GGUF",
+  "version": 3,
+  "file_size_bytes": 2705853856,
+  "tensor_count": 324,
+  "metadata_kv_count": 29,
+  "alignment": 32,
+  "architecture": "nemotron",
+  "parameters": {
+    "embedding": 786432000,
+    "attention": 805502976,
+    "mlp": 1812135936,
+    "normalization": 6144,
+    "output": 786432000,
+    "auxiliary": 0,
+    "total_parameters": 4190509056,
+    "total_parameters_billions": 4.191
+  }
+}
